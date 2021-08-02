@@ -109,3 +109,4 @@ class TestUserAddToBasketFromProductPage():
         page.solve_quiz_and_get_code()
         page.check_bookname()
         page.check_price()
+
