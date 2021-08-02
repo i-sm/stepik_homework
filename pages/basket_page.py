@@ -16,8 +16,4 @@ class BasketPage(BasePage):
         assert not text_of_allert_product_name == text_of_product_name_on_page, "Cart isn't empty"
 
     def check_empty_text(self):
-       try:
-           self.browser.find_element(*BasketPageLocators.EMPTY_TEXT)
-           return True
-       except NoSuchElementException:
-           assert 1==0, "Корзина не пуста"
+        assert self.is_element_present(*BasketPageLocators.EMPTY_TEXT), "Корзина не пуста"

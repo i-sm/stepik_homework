@@ -1,6 +1,7 @@
 from .pages.main_page import MainPage
 from .pages.product_page import ProductPage
 from .pages.basket_page import BasketPage
+from .pages.login_page import LoginPage
 import time
 import pytest
 
@@ -48,3 +49,30 @@ def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
     page.open()
     page.click_show_cart()
     page.check_empty_text()
+
+class TestUserAddToBasketFromProductPage():
+    @pytest.fixture(scope="function", autouse=True)
+    def setup(self, browser):
+        link = "http://selenium1py.pythonanywhere.com/ru/accounts/login/"
+        page = LoginPage(browser, link)
+        page.open()
+        page.register_new_user(f'test{str(time.time())}@test123.fun', 'wewdwdewdsfsfs')
+        page.should_be_registered_user()
+
+    def test_user_cant_see_success_message(self, browser):
+        link = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209/?promo=newYear"
+        page = ProductPage(browser, link)
+        page.open()
+        page.should_not_be_success_message()
+
+    def test_user_can_add_product_to_basket(self, browser):
+        link = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209/?promo=newYear"
+        page = ProductPage(browser, link)
+        page.open()
+        page.should_be_params_in_link()
+        page.should_not_be_success_message()
+        page.add_to_cart()
+        page.solve_quiz_and_get_code()
+        page.check_bookname()
+        page.check_price()
+
