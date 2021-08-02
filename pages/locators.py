@@ -13,9 +13,11 @@ class LoginPageLocators():
     BUTTON_REGISTERED = (By.CSS_SELECTOR, '[name="registration_submit"]')
     LOGOUT_LINK = (By.CSS_SELECTOR, '#logout_link')
 
+
 class ProductPageLocators():
     ADD_TO_CART = (By.CSS_SELECTOR, '.btn-add-to-basket')
-    ALLERT_PRODUCT_NAME = (By.CSS_SELECTOR, '.alert-success .alertinner strong')
+    ALLERT_PRODUCT_NAME = (By.CSS_SELECTOR,
+                           '.alert-success .alertinner strong')
     PAGE_PRODUCT_NAME = (By.CSS_SELECTOR, '.product_main h1')
     ALLERT_PRICE = (By.CSS_SELECTOR, '.alert-info strong')
     PAGE_PRICE = (By.CSS_SELECTOR, '.product_main .price_color')
